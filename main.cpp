@@ -6,10 +6,7 @@ class Inmates{
    string id;
    int sleeptime;
 
-    //constructer
-    Inmates(string id){
-        this->id = id;
-    }
+    
 
     
 };
