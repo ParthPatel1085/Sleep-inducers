@@ -11,11 +11,14 @@ class Sleepinducers
 
     vector<int> inmates; // inmates sleeptime in minutes
     vector<vector<int>> dorms; //inmates assigned in dorms 
-
+    
+    public:
+    
 };
 
 int main()
-{
+{   
+
 
     return 0;
 }
