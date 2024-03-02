@@ -19,7 +19,14 @@ class Sleepinducers
     : totalinmates(ti),totaldorms(td),maxsleeptime(mst){}
     
 };
+void initializeinmates(){
 
+    srand(40);
+    for(int i=0;i<totalinmates;i++){
+
+        inmates.push_back(rand()%(60));
+    }
+}
 int main()
 {   
    int M;
