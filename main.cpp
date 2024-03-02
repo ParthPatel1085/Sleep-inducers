@@ -17,7 +17,7 @@ class Sleepinducers{
     Sleepinducers(int ti,int td,double mst) : totalinmates(ti),totaldorms(td),maxsleeptime(mst){}
     
     
-};
+
 void initializeinmates(){
 
     srand(40);
@@ -26,6 +26,7 @@ void initializeinmates(){
         inmates.push_back(rand()%(60));
     }
 }
+};
 int main()
 {   
    int M;
