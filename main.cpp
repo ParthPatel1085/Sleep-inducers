@@ -10,6 +10,8 @@ class Inmates
     // constructers
     public:
     Inmates(string id) : id(id) {}
+
+    //Randomly initialized
 };
 int main()
 {
