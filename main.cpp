@@ -14,6 +14,9 @@ class Sleepinducers
     vector<vector<int>> dorms; //inmates assigned in dorms 
     
     public:
+
+    Sleepinducers(int ti,int td,double mst) 
+    : totalinmates(ti),totaldorms(td),maxsleeptime(mst){}
     
 };
 
