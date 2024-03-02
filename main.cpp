@@ -1,18 +1,19 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-class Inmates
+class Sleepinducers
 {
     // properties
-private:
-    string id;
-    int sleeptime;
+    private:
+    int totalinmates;
+    int totaldorms;
+    double maxsleeptime;
 
-    // constructers
-public:
-    Inmates(string id, int sleeptime) : id(id) {}
+    vector<int> inmates; // inmates sleeptime in minutes
+    vector<vector<int>> dorms; //inmates assigned in dorms 
 
-    // Randomly initialized
 };
+
 int main()
 {
 
