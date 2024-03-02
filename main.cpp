@@ -31,7 +31,7 @@ int main()
 {   
    int M;
    int N;
-   int P;
+   int o;
 
 
     return 0;
