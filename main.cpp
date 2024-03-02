@@ -3,15 +3,15 @@ using namespace std;
 class Inmates
 {
     // properties
-    private:
+private:
     string id;
     int sleeptime;
 
     // constructers
-    public:
-    Inmates(string id) : id(id) {}
+public:
+    Inmates(string id, int sleeptime) : id(id) {}
 
-    //Randomly initialized
+    // Randomly initialized
 };
 int main()
 {
