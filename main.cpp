@@ -1,19 +1,19 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-class Sleepinducers
-{
+
+class Sleepinducers{
     // properties
     private:
+
     int totalinmates;
     int totaldorms;
     double maxsleeptime;
 
     vector<int> inmates; // inmates sleeptime in minutes
-    vector<vector<int>> dorms; //inmates assigned in dorms 
+    vector<vector<int>> dorms; //inmates assigned in dorms(rooms)
     
     public:
-    
 };
 
 int main()
