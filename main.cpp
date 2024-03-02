@@ -5,6 +5,7 @@ class Sleepinducers
 {
     // properties
     private:
+
     int totalinmates;
     int totaldorms;
     double maxsleeptime;
@@ -18,6 +19,9 @@ class Sleepinducers
 
 int main()
 {   
+   int M;
+   int N;
+   int P;
 
 
     return 0;
