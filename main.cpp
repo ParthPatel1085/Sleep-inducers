@@ -25,6 +25,9 @@ class Sleepinducers{
 
 int main()
 {   
+   int M;
+   int N;
+   int P;
 
 
     return 0;
