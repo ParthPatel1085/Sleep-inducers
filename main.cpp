@@ -28,10 +28,11 @@ public:
     }
 };
 int main()
-{
-    int M;
-    int N;
-    int P;
+{   
+   int M;
+   int N;
+   int P;
+
 
     return 0;
 }
