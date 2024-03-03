@@ -10,7 +10,6 @@ class Sleepinducers
 private:
     int totalinmates;
     int totaldorms;
-    double maxsleeptime;
 
     vector<int> inmates;       // inmates sleeptime in minutes
     vector<vector<int>> dorms; // inmates assigned in dorms(rooms)
