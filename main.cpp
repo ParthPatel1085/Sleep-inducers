@@ -26,6 +26,27 @@ public:
             inmates.push_back(rand() % (60));
         }
     }
+
+    void Dorms()
+    {
+        vector<int> time;
+        int k = 60/totaldorms;
+        int s =0;
+        for(int i=0;i<totaldorms-1;i++)
+        {
+            time[i] = k;
+            k += time[0];
+            time[totaldorms-1]=60;
+            for(int j=0;j<totalinmates;j++)
+            {  
+               if(inmates[j]<=time[i] && inmates[j]>s)
+               {
+                    dorms[i][j] == inmates[j];
+               }
+            }
+            s = time[i];
+        }
+    }
 };
 int main()
 {   
