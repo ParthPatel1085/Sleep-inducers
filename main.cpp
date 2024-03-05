@@ -15,9 +15,7 @@ private:
     vector<vector<int>> dorms; // inmates assigned in dorms(rooms)
 
 public:
-    Sleepinducers(int ti, int tdb) : totalinmates(ti), totaldorms(tdb) {
-        dorms.resize(totaldorms);
-    }
+    Sleepinducers(int ti, int tdb) : totalinmates(ti), totaldorms(td) {}
 
     void initializeinmates()
     {
@@ -37,13 +35,13 @@ public:
         {
             time[i] = k;
             k += time[0];
-            time[totaldorms - 1] = 60;
-            for (int j = 0; j < totalinmates; j++)
-            {
-                if (inmates[j] <= time[i] && inmates[j] > s)
-                {
-                    dorms[i].push_back(inmates[j]);
-                }
+            time[totaldorms-1]=60;
+            for(int j=0;j<totalinmates;j++)
+            {  
+               if(inmates[j]<=time[i] && inmates[j]>s)
+               {
+                    dorms[i][j] == inmates[j];
+               }
             }
             s = time[i];
         }
