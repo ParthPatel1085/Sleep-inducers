@@ -15,7 +15,7 @@ private:
     vector<vector<int>> dorms; // inmates assigned in dorms(rooms)
 
 public:
-    Sleepinducers(int ti, int tdb) : totalinmates(ti), totaldorms(td) {}
+    Sleepinducers(int ti, int tdb) : totalinmates(ti), totaldorms(tdb) {}
 
     void initializeinmates()
     {
