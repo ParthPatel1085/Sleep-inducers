@@ -15,7 +15,9 @@ private:
     vector<vector<int>> dorms; // inmates assigned in dorms(rooms)
 
 public:
-    Sleepinducers(int ti, int tdb) : totalinmates(ti), totaldorms(td) {}
+    Sleepinducers(int ti, int tdb) : totalinmates(ti), totaldorms(tdb) {
+        dorms.resize(totaldorms);
+    }
 
     void initializeinmates()
     {
@@ -28,31 +30,46 @@ public:
 
     void Dorms()
     {
-        vector<int> time;
-        int k = 60/totaldorms;
-        int s =0;
-        for(int i=0;i<totaldorms-1;i++)
+        vector<int> time(totaldorms,0);
+        int k = 60 / totaldorms;
+        int s = 0;
+        for (int i = 0; i < totaldorms; i++)
         {
             time[i] = k;
             k += time[0];
-            time[totaldorms-1]=60;
-            for(int j=0;j<totalinmates;j++)
-            {  
-               if(inmates[j]<=time[i] && inmates[j]>s)
-               {
-                    dorms[i][j] == inmates[j];
-               }
+            time[totaldorms - 1] = 60;
+            for (int j = 0; j < totalinmates; j++)
+            {
+                if (inmates[j] <= time[i] && inmates[j] > s)
+                {
+                    dorms[i].push_back(inmates[j]);
+                }
             }
             s = time[i];
         }
     }
+    void display()
+    {
+
+        for (int i = 0; i < totaldorms; i++)
+        {
+            for (auto &r : dorms[i])
+            {
+                cout << r << "   ";
+            }
+            cout<<endl;
+        }
+    }
 };
 int main()
-{   
-   int M;
-   int N;
-   int P;
-
+{
+    int M;
+    int N;
+    int P;
+    Sleepinducers A(20,7);
+    A.initializeinmates();
+    A.Dorms();
+    A.display();
 
     return 0;
 }
