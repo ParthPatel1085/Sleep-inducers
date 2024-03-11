@@ -77,6 +77,9 @@ public:
 
 int main()
 {
-    
-    return 0;
+   Inmate A, B, C;
+    A.take_input_file(1);
+    B.take_input_file(2);
+    C.take_input_file(3);
+   return 0;
 }
