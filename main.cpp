@@ -2,6 +2,7 @@
 #include<vector>
 #include<set>
 #include<fstream>
+#include<sstream>
 using namespace std;
 class Inmate
 {
