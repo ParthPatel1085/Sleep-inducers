@@ -78,9 +78,11 @@ public:
 
 int main()
 {
-   Inmate A, B, C;
-    A.take_input_file(1);
-    B.take_input_file(2);
-    C.take_input_file(3);
+    
+    Inmate arr[11];
+    for(int i=1;i<11;i++)
+    {
+      arr[i].take_input_file(i);
+    }
    return 0;
 }
