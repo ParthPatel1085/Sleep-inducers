@@ -62,7 +62,18 @@ public:
             file.close(); // Closing the file after reading
         }
     }
-
+    int linelength()
+    {
+        ifstream file("data.csv");
+        int a = 0;
+        string line;
+        while(gentline(file, line))
+        {
+            a++;
+        }
+        file.close();
+        return a;
+    }   
 };
 class Dorm
 {
