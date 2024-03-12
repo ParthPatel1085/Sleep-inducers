@@ -79,10 +79,10 @@ public:
 int main()
 {
     
-    Inmate arr[11];
-    for(int i=1;i<11;i++)
+    Inmate arr[10];
+    for(int i=0;i<10;i++)
     {
-      arr[i].take_input_file(i);
+      arr[i].take_input_file(i+1);
     }
    return 0;
 }
