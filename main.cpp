@@ -13,9 +13,25 @@ public:
     int fall_asleeptime; 
     bool earpodactive;
 
+int linelength()
+    {
+        ifstream file("data.csv");
+        int a=0;
+        string line;
+        while(getline(file, line))
+        {
+            a++;
+        }
+        file.close();
+        cout << a << endl;
+        return a;
+    }
     void take_input_file(int line_number)
     {
         ifstream file("data.csv");
+        int k=linelength();
+        for(int i=0;i<k;i++)
+        {
         if (!file.is_open())
         {
             cout << "Error while opening file" << endl;
@@ -59,21 +75,9 @@ public:
                     cout << endl;
                 
             }
+        }
             file.close(); // Closing the file after reading
         }
-    }
-    int linelength()
-    {
-        ifstream file("data.csv");
-        int a=0;
-        string line;
-        while(getline(file, line))
-        {
-            a++;
-        }
-        file.close();
-        cout << a << endl;
-        return a;
     }
 
 };
