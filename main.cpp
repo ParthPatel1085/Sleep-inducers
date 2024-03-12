@@ -1,106 +1,149 @@
-#include<iostream>
-#include<vector>
-#include<set>
-#include<fstream>
-#include<sstream>
+#include <iostream>
+#include <vector>
+#include <set>
+#include <fstream>
+#include <sstream>
 using namespace std;
+
 class Inmate
 {
 public:
     string inmate_name;
     string earpod_ID;
-    vector<int> sleep_times;  
-    int fall_asleeptime; 
+    vector<int> sleep_times;
+    int fall_asleeptime;
     bool earpodactive;
 
-int linelength()
-    {
-        ifstream file("data.csv");
-        int a=0;
-        string line;
-        while(getline(file, line))
-        {
-            a++;
-        }
-        file.close();
-        cout << a << endl;
-        return a;
-    }
-    void take_input_file(int line_number)
-    {
-        ifstream file("data.csv");
-        int k=linelength();
-        for(int i=0;i<k;i++)
-        {
-        if (!file.is_open())
-        {
-            cout << "Error while opening file" << endl;
-        }
-        else
-        {
-            string line;
-            for (int i = 1; i <= line_number; i++)
-            {
-                if (!getline(file, line))
-                {
-                    cout << "Error: Not enough lines in file" << endl;
-                    file.close();
-                    return;
-                }
-            }
-            istringstream iss(line);
-            vector<string> tokens;
-            string token;
-            while (getline(iss, token, ','))
-            {
-                tokens.push_back(token);
-            }
-            if (tokens.size() >= 10)
-            {
-                inmate_name = tokens[0];
-                earpod_ID = tokens[1];
-
-                    fall_asleeptime = stoi(tokens[9]);
-                    for (int j = 2; j < 9; j++)
-                    {
-                        {
-                            sleep_times.push_back(stoi(tokens[j]));
-                        }
-                    }
-
-                    for (const auto &value : tokens)
-                    {
-                        cout << value << "   ";
-                    }
-                    cout << endl;
-                
-            }
-        }
-            file.close(); // Closing the file after reading
-        }
-    }
-
+    void parse_data(const string &line);
+    void read_data(const string &filename);
 };
+void Inmate::parse_data(const string &line)
+{
+    istringstream iss(line);
+    vector<string> tokens;
+    string token;
+    while (getline(iss, token, ','))
+    {
+        tokens.push_back(token);
+    }
+    if (tokens.size() < 10)
+    {
+        cout << "Invalid data format in file" << endl;
+        return;
+    }
+
+    inmate_name = tokens[0];
+    earpod_ID = tokens[1];
+    // Convert the fall asleep time to integer
+    fall_asleeptime = stoi(tokens[9]);
+    // Parse sleep times
+    for (int j = 2; j < 9; j++)
+    {
+        sleep_times.push_back(stoi(tokens[j]));
+    }
+    for (int i = 0; i < tokens.size(); i++)
+    {
+        cout << tokens[i] << "  ";
+    }
+    cout << endl;
+}
+
+void Inmate::read_data(const string &filename)
+{
+    ifstream file(filename);
+    if (!file.is_open())
+    {
+        cout << "Error opening file: " << filename << endl;
+        return;
+    }
+
+    string line;
+    getline(file, line); // Skip header line
+    while (getline(file, line))
+    {
+        parse_data(line);
+    }
+
+    file.close();
+}
+
 class Dorm
 {
-private:
+public:
     string dorm_name;
-    vector<Inmate> assigned_inmate; 
-    set<int> avail_channel;     
-    set<int> play_channel;      
+    vector<Inmate> assigned_inmates;
+    set<int> avail_channel;
+    set<int> play_channel;
 
-public: 
-    Dorm(string name) : dorm_name(name), assigned_inmate(), avail_channel(), play_channel() {}
+    Dorm(const string &name) : dorm_name(name) {}
+
+    bool add_inmate(const Inmate &inmate)
+    {
+        cout << "Adding inmate: " << inmate.inmate_name << " to " << dorm_name << endl;
+        assigned_inmates.push_back(inmate);
+        cout << "Inmate name: " << assigned_inmates.back().inmate_name << " added to " << dorm_name << endl;
+        cout << "Assigned Inmates count: " << assigned_inmates.size() << endl;
+        return true;
+    }
+
+    void print_members()
+    {
+        cout << "Dorm Name: " << dorm_name << endl;
+        cout << "Assigned Inmates:" << endl;
+        for (const Inmate &inmate : assigned_inmates)
+        {
+            cout << "Inmate Name: " << inmate.inmate_name << endl;
+            cout << "Earpod ID: " << inmate.earpod_ID << endl;
+            cout << "Fall Asleep Time: " << inmate.fall_asleeptime << endl;
+            cout << "Sleep Times: ";
+            for (int st : inmate.sleep_times)
+            {
+                cout << st << " ";
+            }
+            cout << endl
+                 << endl;
+        }
+    }
 };
 
 int main()
 {
-    Inmate a1;
-    int k = a1.linelength();
-    Inmate arr[k];
-    for(int i=0;i<k;i++)
+    vector<Inmate> x[3];
+    for (int i = 0; i < 3; ++i)
     {
-      arr[i].take_input_file(i+1);
+        Inmate inmate;          // Create an Inmate object
+        x[i].push_back(inmate); // Add the Inmate object to the vector
+        for (Inmate &inmate : x[i])
+        {
+            inmate.read_data("data.csv");
+            cout << "Read inmate: " << inmate.inmate_name << endl; // Debug statement
+        }
     }
-   return 0;
+
+    Dorm dorm1("dorm1");
+    Dorm dorm2("dorm2");
+
+    for (int i = 0; i < 3; ++i)
+    {
+        
+        for (const Inmate &inmate : x[i])
+        {
+            
+            if (inmate.fall_asleeptime <= 50)
+            {
+                
+                dorm1.add_inmate(inmate);
+            }
+            else
+            {
+                
+                dorm2.add_inmate(inmate);
+            }
+        }
+    }
+
+    dorm1.print_members();
+    dorm2.print_members();
+
+ return 0;
 }
