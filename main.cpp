@@ -62,6 +62,19 @@ public:
             file.close(); // Closing the file after reading
         }
     }
+    int linelength()
+    {
+        ifstream file("data.csv");
+        int a=0;
+        string line;
+        while(getline(file, line))
+        {
+            a++;
+        }
+        file.close();
+        cout << a << endl;
+        return a;
+    }
 
 };
 class Dorm
@@ -78,9 +91,10 @@ public:
 
 int main()
 {
-    
-    Inmate arr[10];
-    for(int i=0;i<10;i++)
+    Inmate a1;
+    int k = a1.linelength();
+    Inmate arr[k];
+    for(int i=0;i<k;i++)
     {
       arr[i].take_input_file(i+1);
     }
