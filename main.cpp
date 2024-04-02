@@ -15,8 +15,8 @@ public:
     bool earpodactive;
 
     void parse_data(const string &line);
-    void read_data(const string &filename);
 };
+
 void Inmate::parse_data(const string &line)
 {
     istringstream iss(line);
@@ -28,7 +28,7 @@ void Inmate::parse_data(const string &line)
     }
     if (tokens.size() < 10)
     {
-        cout << "Invalid data format in file" << endl;
+        cerr << "Invalid data format in file: " << line << endl;
         return;
     }
 
@@ -41,30 +41,6 @@ void Inmate::parse_data(const string &line)
     {
         sleep_times.push_back(stoi(tokens[j]));
     }
-    for (int i = 0; i < tokens.size(); i++)
-    {
-        cout << tokens[i] << "  ";
-    }
-    cout << endl;
-}
-
-void Inmate::read_data(const string &filename)
-{
-    ifstream file(filename);
-    if (!file.is_open())
-    {
-        cout << "Error opening file: " << filename << endl;
-        return;
-    }
-
-    string line;
-    getline(file, line); // Skip header line
-    while (getline(file, line))
-    {
-        parse_data(line);
-    }
-
-    file.close();
 }
 
 class Dorm
@@ -108,42 +84,42 @@ public:
 
 int main()
 {
-    vector<Inmate> x[3];
-    for (int i = 0; i < 3; ++i)
+    vector<Inmate> inmates;
+    ifstream file("data.csv");
+    if (!file.is_open())
     {
-        Inmate inmate;          // Create an Inmate object
-        x[i].push_back(inmate); // Add the Inmate object to the vector
-        for (Inmate &inmate : x[i])
-        {
-            inmate.read_data("data.csv");
-            cout << "Read inmate: " << inmate.inmate_name << endl; // Debug statement
-        }
+        cerr << "Error opening file: data.csv" << endl;
+        return 1;
     }
+
+    string line;
+    getline(file, line); // Skip header line
+    while (getline(file, line))
+    {
+        Inmate inmate;
+        inmate.parse_data(line);
+        inmates.push_back(inmate);
+    }
+    file.close();
 
     Dorm dorm1("dorm1");
     Dorm dorm2("dorm2");
 
-    for (int i = 0; i < 3; ++i)
+    int fall_asleep_threshold = 50;
+    for (const Inmate &inmate : inmates)
     {
-        
-        for (const Inmate &inmate : x[i])
+        if (inmate.fall_asleeptime <= fall_asleep_threshold)
         {
-            
-            if (inmate.fall_asleeptime <= 50)
-            {
-                
-                dorm1.add_inmate(inmate);
-            }
-            else
-            {
-                
-                dorm2.add_inmate(inmate);
-            }
+            dorm1.add_inmate(inmate);
+        }
+        else
+        {
+            dorm2.add_inmate(inmate);
         }
     }
 
     dorm1.print_members();
     dorm2.print_members();
 
- return 0;
+    return 0;
 }
