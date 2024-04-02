@@ -96,7 +96,7 @@ int main()
     {
       Inmate inmate;
       inmate.parse_data(line);
-      inmate.push_back(inmate);
+      inmates.push_back(inmate);
     }
   file.close();
 
