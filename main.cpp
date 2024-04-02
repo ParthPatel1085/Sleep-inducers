@@ -83,7 +83,7 @@ public:
 int main()
 {
    vector<Inmate> inmates;
-  ifstream file ("data.csv");
+  ifstream file ("data1.csv");
   if(!file.is_open())
   {
     cerr << "Error opening file: data.csv" << endl;
@@ -115,10 +115,8 @@ int main()
         dorm2.add_inmate(inmate);
       }
     }
-
   dorm1.print_members();
   dorm2.print_members();
-
  return 0;
 }
   
