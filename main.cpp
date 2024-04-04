@@ -56,7 +56,6 @@ public:
   {
     cout << "Adding inmate: " << inmate.inmate_name << " to " << dorm_name << endl; // Debug: Adding inmate
     assigned_inmates.push_back(inmate);
-    cout << "Inmate added successfully." << endl; // Debug: Added successfully
     return true;
   }
 
