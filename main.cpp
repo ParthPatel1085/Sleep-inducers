@@ -54,7 +54,7 @@ public:
 
   bool add_inmate(const Inmate &inmate)
   {
-    cout << "Adding inmate: " << inmate.inmate_name << " to " << dorm_name << endl; // Debug: Adding inmate
+    cout  << inmate.inmate_name << " to " << dorm_name << endl; // Debug: Adding inmate
     assigned_inmates.push_back(inmate);
     return true;
   }
@@ -103,6 +103,7 @@ int main()
   Dorm dorm2("dorm2");
 
   int fall_asleep_threshold = 50;
+  cout << "Adding inmates to the dorm according to theis FallAsleepTimes .... " << endl;
   for(const Inmate &inmate : inmates)
     {
       if(inmate.fall_asleeptime <= fall_asleep_threshold)
@@ -114,6 +115,8 @@ int main()
         dorm2.add_inmate(inmate);
       }
     }
+  cout << "All inmates are added successfully ..." << endl;
+  cout << "-------------------------------------------------------------------" << endl;
   dorm1.print_members();
   dorm2.print_members();
  return 0;
