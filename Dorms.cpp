@@ -1,3 +1,4 @@
+#include "Inmates.cpp"
 class Dorm
 {
 public:
