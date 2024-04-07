@@ -61,7 +61,7 @@ void Dorm :: print_members()
 int main()
 {
   vector<Inmate> inmates;
-  ifstream file("data1.csv");
+  ifstream file("Input_for_Inmates.csv");
   if (!file.is_open())
   {
     cerr << "Error opening file: data1.csv" << endl;
