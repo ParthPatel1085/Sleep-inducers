@@ -43,7 +43,29 @@ void Inmate::parse_data(const string &line)
     sleep_times.push_back(stoi(tokens[j]));
   }
 }
-
+bool Dorm :: add_inmate(const Inmate &inmate)
+  {
+    assigned_inmates.push_back(inmate);
+    return true;
+  }
+void Dorm :: print_members()
+  {
+    cout << "-------------------------------------------------------------------" << endl;
+    cout << "This are the list of inmates who are assigned to " << dorm_name << endl;
+    for (const Inmate &inmate : assigned_inmates)
+    {
+      cout << "Inmate Name: " << inmate.inmate_name << endl;
+      cout << "Earpod ID: " << inmate.earpod_ID << endl;
+      cout << "Fall Asleep Time: " << inmate.fall_asleeptime << endl;
+      cout << "Sleep Time list from monday to sunday :   ";
+      for (int st : inmate.sleep_times)
+      {
+        cout << st << " ";
+      }
+      cout << endl
+           << endl;
+    }
+  }
 
 int main()
 {
