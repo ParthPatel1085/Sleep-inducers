@@ -64,7 +64,7 @@ int main()
   ifstream file("Input_for_Inmates.csv");
   if (!file.is_open())
   {
-    cerr << "Error opening file: data1.csv" << endl;
+    cerr << "Error opening file: Input_for_Inmates.csv" << endl;
     return 1;
   }
 
@@ -84,7 +84,7 @@ int main()
   Dorm dorm2("Dorm2", p2);
 
   int fall_asleep_threshold = 20;
-  cout << "Adding inmates to the dorm according to theis FallAsleepTimes .... " << endl;
+  cout << "Adding inmates to the dorm according to their FallAsleepTimes .... " << endl;
   for (const Inmate &inmate : inmates)
   {
     if (inmate.fall_asleeptime <= fall_asleep_threshold)
